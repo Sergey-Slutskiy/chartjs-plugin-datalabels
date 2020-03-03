@@ -6,9 +6,9 @@ var helpers = Chart.helpers;
 var rasterize = utils.rasterize;
 
 function drawHexagon(ctx, rect, borderWidth) {
-	let x = rasterize(rect.x * 1.8) + borderWidth / 2;
+	let x = rasterize(rect.y * 1.8) + borderWidth / 2;
 	let y = rasterize(rect.y * 2) + borderWidth / 2;
-	let sideLength = rect.w;
+	let sideLength = rect.h;
   let hexagonAngle = 0.523598776;
   let hexHeight = Math.sin(hexagonAngle) * sideLength;
   let hexRadius = Math.cos(hexagonAngle) * sideLength;
