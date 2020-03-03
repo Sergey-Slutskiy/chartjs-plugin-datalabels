@@ -3,6 +3,6 @@
 bower.json
 cc-test-reporter
 coverage/
-dist/
+# dist/
 node_modules/
 *.stackdump
