@@ -401,20 +401,7 @@ function drawHexagon(ctx, rect, borderWidth) {
   let hexRadius = Math.cos(hexagonAngle) * sideLength;
   let hexRectangleHeight = sideLength + 2 * hexHeight;
   let hexRectangleWidth = 2 * hexRadius;
-	console.log("x", x);
-	console.log("y", y);
-	console.log("sideLength", sideLength);
-	console.log("hexHeight", hexHeight);
-	console.log("hexRadius", hexRadius);
-	console.log("hexRectangleHeight", hexRectangleHeight);
-	console.log("hexRectangleWidth", hexRectangleWidth);
 
-	console.log("moveTo", x + hexRadius, y);
-	console.log("lineTo 1 ", x + hexRectangleWidth, y + hexHeight);
-	console.log("lineTo 2", x + hexRectangleWidth, y + hexHeight + sideLength);
-	console.log("lineTo 3", x + hexRadius, y + hexRectangleHeight);
-	console.log("lineTo 4", x, y + sideLength + hexHeight);
-	console.log("lineTo 5", x, y + hexHeight);
   ctx.beginPath();
   ctx.moveTo(x + hexRadius, y);
   ctx.lineTo(x + hexRectangleWidth, y + hexHeight);
@@ -423,16 +410,6 @@ function drawHexagon(ctx, rect, borderWidth) {
   ctx.lineTo(x, y + sideLength + hexHeight);
   ctx.lineTo(x, y + hexHeight);
 	ctx.closePath();
-	// let side = 0;
-	// let sizeX = rasterize(rect.w) - borderWidth;
-	// let sizeY = rasterize(rect.h) - borderWidth;
-	// let x = rasterize(rect.x / 8) + borderWidth / 2;
-	// let y = rasterize(rect.y / 8) + borderWidth / 2;
-
-	// ctx.moveTo(x + sizeX * Math.cos(0), y + sizeY * Math.sin(0));
-	// for (side; side < 7; side++) {
-	// 	ctx.lineTo(x + sizeX * Math.cos(side * 2 * Math.PI / 6), y + sizeY * Math.sin(side * 2 * Math.PI / 6));
-	// }
 }
 
 function boundingRects(model) {
