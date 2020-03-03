@@ -5,6 +5,26 @@ import positioners from './positioners';
 var helpers = Chart.helpers;
 var rasterize = utils.rasterize;
 
+function drawHexagon(ctx, rect, borderWidth) {
+	let x = rasterize(rect.x * 1.8) + borderWidth / 2;
+	let y = rasterize(rect.y * 2) + borderWidth / 2;
+	let sideLength = rect.w;
+  let hexagonAngle = 0.523598776;
+  let hexHeight = Math.sin(hexagonAngle) * sideLength;
+  let hexRadius = Math.cos(hexagonAngle) * sideLength;
+  let hexRectangleHeight = sideLength + 2 * hexHeight;
+  let hexRectangleWidth = 2 * hexRadius;
+
+  ctx.beginPath();
+  ctx.moveTo(x + hexRadius, y);
+  ctx.lineTo(x + hexRectangleWidth, y + hexHeight);
+  ctx.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
+  ctx.lineTo(x + hexRadius, y + hexRectangleHeight);
+  ctx.lineTo(x, y + sideLength + hexHeight);
+  ctx.lineTo(x, y + hexHeight);
+	ctx.closePath();
+}
+
 function boundingRects(model) {
 	var borderWidth = model.borderWidth || 0;
 	var padding = model.padding;
@@ -78,6 +98,10 @@ function drawFrame(ctx, rect, model) {
 		rasterize(rect.w) - borderWidth,
 		rasterize(rect.h) - borderWidth,
 		model.borderRadius);
+
+	if (model.hexagon) {
+		drawHexagon(ctx, rect, borderWidth);
+	}
 
 	ctx.closePath();
 
@@ -231,7 +255,8 @@ helpers.extend(Label.prototype, {
 			textShadowBlur: resolve([config.textShadowBlur, 0], context, index),
 			textShadowColor: resolve([config.textShadowColor, color], context, index),
 			textStrokeColor: resolve([config.textStrokeColor, color], context, index),
-			textStrokeWidth: resolve([config.textStrokeWidth, 0], context, index)
+			textStrokeWidth: resolve([config.textStrokeWidth, 0], context, index),
+			hexagon: resolve([config.hexagon, false], context, index),
 		};
 	},
 
